@@ -1,0 +1,5 @@
+# Pomodoro
+
+## LICENSEs
+
+[MIT](./LICENSE)
