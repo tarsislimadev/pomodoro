@@ -43,6 +43,12 @@ const stopClock = () => {
   window.clearInterval(state.intervalId)
 }
 
+const clearElement = (el = document.createElement('div')) => {
+  while (el.children.length) {
+    el.children[0].remove()
+  }
+}
+
 // // //
 
 const createElement = {
@@ -73,12 +79,19 @@ const createElement = {
     return el
   },
   button: () => {
-    const el = document.createElement('div')
-    el.style.boxShadow = '0rem 0rem 0rem calc(1rem / 8) #000000'
+    const el = document.createElement('button')
     el.style.padding = 'calc(1rem / 2)'
-    el.style.margin = 'calc(1rem / 8)'
-    el.style.display = 'inline-block'
+    el.style.margin = 'calc(1rem / 4)'
+    el.style.border = 'none'
     el.style.cursor = 'pointer'
+    return el
+  },
+  image: ({ src, alt = 'image', width, height } = {}) => {
+    const el = document.createElement('img')
+    el.src = src
+    el.alt = alt
+    if (width) el.width = width
+    if (height) el.height = height
     return el
   },
 }
@@ -122,6 +135,8 @@ const startButton = createElement.button()
 startButton.innerText = 'Start'
 startButton.style.margin = 'calc(1rem / 8) calc(1rem / 1)'
 startButton.addEventListener('click', () => {
+  clearElement(startButton)
+
   if (startButton.innerText === 'Start') {
     state.startTime = Date.now()
 
