@@ -137,6 +137,7 @@ startButton.addEventListener('click', () => {
     stopClock()
 
     startButton.innerText = 'Start'
+    timeSpan.innerText = 'Pause'
   }
 })
 app.append(startButton)
